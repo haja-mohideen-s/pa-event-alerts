@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UserSecretsId>cc3b9195-d2d2-4ff2-8266-954ca83f4e34</UserSecretsId>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.6"/>
+    <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.6"/>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.6"/>
+    <PackageReference Include="Coravel" Version="6.0.2"/>
+    <PackageReference Include="Azure.Communication.Email" Version="*"/>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.6"/>
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="9.0.6"/>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="EmailTemplates/*.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+</Project>
