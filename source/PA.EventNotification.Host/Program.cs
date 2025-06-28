@@ -13,6 +13,8 @@ IConfigurationRoot config = new ConfigurationBuilder()
             .AddUserSecrets<Program>()
             .Build();
 
+
+
 var onePAOption = new OnePAOption();
 IConfigurationSection onePAconfigs = config.GetSection(OnePAOption.OnePA);
 onePAconfigs.Bind(onePAOption);
@@ -25,6 +27,9 @@ hostBuilder.Services.AddSingleton<IEmailSender, AzureEmailSender>();
 hostBuilder.Services.AddSingleton<IEmailFormatter, EmailFormatter>();
 hostBuilder.Services.AddSingleton(new EventType());
 hostBuilder.Services.AddTransient<EventService>();
+hostBuilder.Services.AddSingleton<LastTenDays>();
+hostBuilder.Services.AddSingleton<RestOfTheDays>();
+hostBuilder.Services.AddSingleton<DateSegmentFactory>();
 hostBuilder.Services.AddMemoryCache();
 
 hostBuilder.Services.AddHttpClient(OnePAOption.OnePA,
@@ -51,5 +56,7 @@ app.Services.UseScheduler(scheduler =>
         .RunOnceAtStart()
         .PreventOverlapping(nameof(EventService));
 });
+
+Console.WriteLine("Starting PA Event Notification Service...");
 
 app.Run();

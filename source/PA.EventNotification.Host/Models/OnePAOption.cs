@@ -10,6 +10,7 @@ public class OnePAOption
         public const string TimePeriod = "timePeriod";
         public const string Sort = "sort";
         public const string Page = "page";
+        public const string NextMonth = "next-month";
     }
 
     public string SearchURI { get; set; } = String.Empty;
