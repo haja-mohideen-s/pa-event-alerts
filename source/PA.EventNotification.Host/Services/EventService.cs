@@ -16,6 +16,8 @@ public class EventService(
     IHttpClientFactory httpClientFactory,
     DateSegmentFactory factory) : IInvocable
 {
+
+    private IDateSegment _dateSegment = factory.Create();
     public async Task Invoke()
     {
         try
@@ -55,9 +57,7 @@ public class EventService(
     private async Task<IEnumerable<EventResponse>> FetchEventsAsync(HttpClient client, string evt, IOptions<OnePAOption> option, int page = 1)
     {
         List<EventResponse> responses = new();
-
-        IDateSegment dateSegment = factory.Create();
-        var requestUrls = dateSegment.GetRequestUrls(evt, page);
+        var requestUrls = _dateSegment?.GetRequestUrls(evt, page);
         foreach (string url in requestUrls)
         {
             HttpRequestMessage request = new()
